@@ -12,7 +12,7 @@ Description: "Kenya Patient"
 * name.family 1..1
 * name.given 1..*
 * birthDate 1..1
-* address 0..* MS
+* address 0..* MS 
 * address.city 1..1
 * address.line 1..1
 * address.district 1..1
@@ -31,4 +31,13 @@ Description: "Kenya Patient"
 * identifier[NID].system = "http://jembi.org/fhir/kenya-training-mdyeshana/identifier/nid"
 * identifier[MRN].value 1..1
 * identifier[MRN].system = "http://jembi.org/fhir/kenya-training-mdyeshana/identifier/mrn"
+* extension contains KeyPopulationStatusExtension named KPS 1..1
 
+Extension: KeyPopulationStatusExtension
+Id: key-population-status-extension
+Title: "Key Population Status Extension"
+Description: "Key Population Status Extension"
+* ^context[+].type = #element
+* ^context[=].expression = "Patient"
+* value[x] only CodeableConcept
+* valueCodeableConcept from KeyPopulationStatusValueSet (required)
